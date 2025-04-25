@@ -28,21 +28,6 @@ func faqHandler(w http.ResponseWriter, r *http.Request) {
 	`)
 }
 
-type Router struct{}
-
-func (router Router) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	switch r.URL.Path {
-	case "/":
-		homeHandler(w, r)
-	case "/contact":
-		contactHandler(w, r)
-	case "/faq":
-		faqHandler(w, r)
-	default:
-		http.Error(w, "Page not found", http.StatusNotFound)
-	}
-}
-
 func main() {
 	r := chi.NewRouter()
 
