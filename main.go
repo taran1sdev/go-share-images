@@ -12,6 +12,7 @@ import (
 
 func homeHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+
 	tpl, err := template.ParseFiles("templates/home.gohtml")
 	if err != nil {
 		log.Printf("Parsing template: %v", err)
@@ -29,7 +30,20 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
 
 func contactHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	fmt.Fprint(w, "<h1>Contact Page</h1><p>Contact <a href=\"mailto:thommsairddev@gmail.com\">thomasairddev@gmail.com</>.</p>")
+
+	tpl, err := template.ParseFiles("templates")
+	if err != nil {
+		log.Printf("Parsing template: %v", err)
+		http.Error(w, "There was an error parsing the template", http.StatusInternalServerError)
+		return
+	}
+
+	err = tpl.Execute(w, nil)
+	if err != nil {
+		log.Printf("Executing template: %v", err)
+		http.Error(w, "There was an error executing the template", http.StatusInternalServerError)
+		return
+	}
 }
 
 func faqHandler(w http.ResponseWriter, r *http.Request) {
