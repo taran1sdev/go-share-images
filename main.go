@@ -31,7 +31,7 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
 func contactHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 
-	tpl, err := template.ParseFiles("templates")
+	tpl, err := template.ParseFiles("templates/contact.gohtml")
 	if err != nil {
 		log.Printf("Parsing template: %v", err)
 		http.Error(w, "There was an error parsing the template", http.StatusInternalServerError)
