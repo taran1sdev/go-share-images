@@ -1,2 +1,8 @@
 <h1>Hello {{.Name}}</h1>
 <p>Bio: {{.Bio}}</p>
+
+<script> // This will be encoded differently by html/template
+const user = {
+    "name": {{.Name}},
+    "bio": {{.Bio}}
+</script>
