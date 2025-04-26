@@ -17,8 +17,10 @@ func main() {
 
 	user := struct {
 		Name string
+		Bio  string // For escaping html //template.HTML For processing as html
 	}{
 		Name: "John Smith",
+		Bio:  `<script>alert("xss")</script>`,
 	}
 
 	err = t.Execute(os.Stdout, user)
