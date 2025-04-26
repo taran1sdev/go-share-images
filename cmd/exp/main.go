@@ -5,13 +5,19 @@ import (
 	"os"
 )
 
+// type User struct {
+// 	Name string
+// }
+
 func main() {
 	t, err := template.ParseFiles("hello.gohtml")
 	if err != nil {
 		panic(err)
 	}
 
-	user := User{
+	user := struct {
+		Name string
+	}{
 		Name: "John Smith",
 	}
 
